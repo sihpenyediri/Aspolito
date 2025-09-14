@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Aspolito — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#6366f1;
+  --accent:#22d3ee;
+  --bg:#f8fafc;
+  --text:#0f172a;
+  --muted:#6b7280;
+  --card:#ffffff;
+}
+*{box-sizing:border-box}body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial;margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.header{position:sticky;top:0;background:rgba(255,255,255,0.9);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid rgba(15,23,42,0.04);z-index:40}
+.logo{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--primary)}
+.logo img{width:44px;height:44px;object-fit:contain}
+.nav{display:flex;gap:18px;align-items:center}
+.nav a{font-weight:600;color:var(--text);opacity:0.9;padding:8px 10px;border-radius:8px;transition:background .18s,color .18s}
+.nav a:hover{background:rgba(99,102,241,0.08);color:var(--primary)}
+
+/* hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.hamburger span{width:22px;height:3px;background:var(--text);border-radius:3px;display:block}
+
+/* Hero */
+.hero{min-height:70vh;display:grid;grid-template-columns:1fr 460px;align-items:center;gap:28px;padding:48px 20px;max-width:1200px;margin:0 auto}
+.hero-left{padding-right:10px}
+.kicker{display:inline-block;padding:6px 10px;background:rgba(255,255,255,0.12);border-radius:999px;color:#fff;font-weight:600;margin-bottom:16px}
+.hero-title{font-size:clamp(28px,5vw,52px);line-height:1.02;margin:0 0 18px;color:#fff;font-weight:800;text-shadow:0 6px 20px rgba(0,0,0,0.2)}
+.hero-desc{color:rgba(255,255,255,0.92);max-width:56ch;margin-bottom:22px;font-size:1.05rem}
+.cta{display:inline-block;background:var(--card);color:var(--primary);padding:12px 20px;border-radius:12px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,0.12);transition:transform .18s,box-shadow .18s}
+.cta:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,0.14)}
+
+/* hero right profile */
+.profile-card{background:linear-gradient(180deg,rgba(255,255,255,0.15),rgba(255,255,255,0.06));border-radius:18px;padding:28px;display:flex;flex-direction:column;align-items:center;box-shadow:0 10px 30px rgba(2,6,23,0.08)}
+.profile-img{width:260px;height:260px;border-radius:999px;overflow:hidden;border:8px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))}
+.profile-img img{width:100%;height:100%;object-fit:cover}
+
+/* Sections */
+.section{padding:56px 20px;max-width:1200px;margin:0 auto}
+.section h2{font-size:28px;margin-bottom:12px}
+.lead{color:var(--muted);max-width:72ch}
+
+/* Team grid */
+.grid{display:grid;gap:20px}
+.team-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+/* team card */
+.card{background:var(--card);border-radius:14px;padding:18px;text-align:center;box-shadow:0 8px 24px rgba(2,6,23,0.06);transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(2,6,23,0.12)}
+.card img{width:120px;height:120px;border-radius:999px;object-fit:cover;margin:0 auto 12px;border:4px solid rgba(99,102,241,0.15)}
+
+/* contact form responsive 2-col on wide screens */
+.form-grid{display:grid;gap:12px}
+@media(min-width:900px){.form-grid{grid-template-columns:1fr 1fr} .form-grid .full{grid-column:1/-1}}
+
+/* footer */
+.footer{padding:32px 20px;text-align:center;color:var(--muted);font-size:.95rem}
+
+/* responsive behavior */
+@media(max-width:980px){.hero{grid-template-columns:1fr 380px;padding:36px 18px}.profile-card{padding:22px}.profile-img{width:220px;height:220px}}
+@media(max-width:720px){
+  .nav{display:none}
+  .hamburger{display:flex}
+  .hero{grid-template-columns:1fr;padding:32px 16px;gap:18px}
+  .profile-card{order:-1;width:100%}
+  .profile-img{width:200px;height:200px}
+  .hero-left{text-align:center}
+  .hero-title{font-size:clamp(24px,7vw,36px)}
+  .cta{width:100%;max-width:320px;text-align:center}
+  .profile-card{padding:20px}
+}
+
+/* mobile menu open */
+.mobile-menu{position:fixed;inset:0;background:rgba(2,6,23,0.5);display:none;align-items:center;justify-content:center;z-index:60}
+.mobile-menu.show{display:flex}
+.mobile-menu nav{background:var(--card);padding:24px;border-radius:12px;display:flex;flex-direction:column;gap:12px;min-width:220px;text-align:center}
+.mobile-menu a{font-weight:700;padding:10px 12px;border-radius:8px;color:var(--text)}
+
+</style>
+</head>
+<body>
+<header class="header">
+  <a class="logo" href="#"><img src="images/logo.png" alt="logo">Aspolito</a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#about">About</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- mobile menu overlay -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true">
+  <nav><a href="#about" onclick="closeMenu()">About</a><a href="#team" onclick="closeMenu()">Team</a><a href="#contact" onclick="closeMenu()">Contact</a></nav>
+</div>
+
+<section class="hero" id="home" role="banner">
+  <div class="hero-left">
+    <div class="kicker">Aspolito</div>
+    <h1 class="hero-title">Karya Kreatif Aspolito — UI & UX Studio</h1>
+    <p class="hero-desc">Kami merancang antarmuka yang intuitif dan pengalaman pengguna yang memukau. Lihat portofolio dan tim kami untuk tahu lebih lanjut.</p>
+    <a class="cta" href="#team">Kenalan dengan Tim</a>
+  </div>
+  <aside class="profile-card" aria-hidden="false">
+    <div class="profile-img"><img src="images/akbar.jpg" alt="Akbar Putera Pribadi"></div>
+    <h3 style="margin-top:12px">Akbar Putera Pribadi</h3>
+    <p style="color:var(--muted);margin:6px 0 12px">UI Designer</p>
+    <a class="cta" href="#contact" style="display:inline-block;padding:10px 18px;font-size:0.95rem">Contact Akbar</a>
+  </aside>
+</section>
+
+<section id="about" class="section">
+  <h2>About</h2>
+  <p class="lead">Aspolito adalah tim kolaboratif yang menggabungkan desain dan teknologi untuk menghadirkan produk digital yang mudah digunakan dan estetis.</p>
+</section>
+
+<section id="team" class="section">
+  <h2>Tim Kami</h2>
+  <p class="lead">Berikut tim inti kami.</p>
+  <div class="grid team-grid">
+    <div class="card">
+      <img src="images/akbar.jpg" alt="Akbar">
+      <h4>Akbar Putera Pribadi</h4>
+      <p style="color:var(--muted);margin-top:6px">UI Designer</p>
+    </div>
+    <div class="card">
+      <img src="images/irfan.jpg" alt="Irfan">
+      <h4>Irfan Ramadhan</h4>
+      <p style="color:var(--muted);margin-top:6px">Programmer</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section" style="background:linear-gradient(180deg,rgba(99,102,241,0.06),transparent)">
+  <h2>Kontak</h2>
+  <p class="lead">Kirim pesan lewat form ini dan kami akan segera membalas.</p>
+  <form action="https://formspree.io/f/xpwjbyer" method="POST" class="form-grid">
+    <div><label for="name">Nama</label><input id="name" name="name" placeholder="Nama lengkap" required></div>
+    <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="email@contoh.com" required></div>
+    <div class="full"><label for="message">Pesan</label><textarea id="message" name="message" rows="6" placeholder="Tulis pesanmu di sini" required></textarea></div>
+    <div class="full"><button type="submit">Kirim Pesan</button></div>
+  </form>
+</section>
+
+<footer class="footer">© 2025 Aspolito. All rights reserved.</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', ()=> mobileMenu.classList.toggle('show'));
+function closeMenu(){ mobileMenu.classList.remove('show'); }
+</script>
+</body>
+</html>
